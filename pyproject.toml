@@ -1,0 +1,91 @@
+[tool.poetry]
+name = "vanilla-tweaks-partition"
+version = "0.1.0"
+description = "Download Vanilla Tweaks packs into separate Minecraft resource packs"
+license = "MIT"
+authors = ["Axieum <imaxieum@gmail.com>"]
+readme = "README.md"
+repository = "https://github.com/axieum/vanilla-tweaks-partition"
+keywords = ["minecraft", "pack", "vanillatweaks"]
+packages = [{ include = "vanilla_tweaks_partition", from = "src" }]
+include = [{ path = "tests", format = "sdist" }]
+
+[tool.poetry.urls]
+"Funding" = "https://github.com/sponsors/axieum"
+"Issue tracker" = "https://github.com/axieum/vanilla-tweaks-partition/issues"
+"Release notes" = "https://github.com/axieum/vanilla-tweaks-partition/blob/main/CHANGELOG.md"
+
+[tool.poetry.scripts]
+vanilla-tweaks-partition = "vanilla_tweaks_partition.main:app"
+
+[tool.poetry.dependencies]
+python = "^3.8.1"
+requests = "^2.31.0"
+typer = {version = "^0.9.0", extras = ["all"]}
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.9.1"
+pre-commit = "^3.4.0"
+ruff = "^0.0.291"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7.4.2"
+pytest-asyncio = "^0.21.1"
+pytest-cov = "^4.1.0"
+pytest-xdist = "^3.3.1"
+syrupy = "^4.5.0"
+
+[tool.poetry.group.typing.dependencies]
+mypy = "^1.5.1"
+
+[tool.ruff]
+src = ["src", "tests"]
+target-version = "py38"
+line-length = 120
+select = [
+  "F", # pyflakes
+  "E", # pycodestyle
+  "W", # pycodestyle
+  "I", # isort
+  "N", # pep8-naming
+  "UP", # pyupgrade
+  "ANN", # flake8-annotations
+  "B", # flake8-bugbear
+  "C4", # flake8-comprehensions
+  "PIE", # flake8-pie
+  "PT", # flake8-pytest-style
+  "SIM", # flake8-simplify
+  "TCH", # flake8-type-checking
+  "RUF", # ruff-specific rules
+]
+ignore = [
+  "ANN101", # Missing type annotation for {name} in method
+  "ANN102", # Missing type annotation for {name} in classmethod
+  "ANN401", # Dynamically typed expressions (typing.Any) are disallowed in {name}
+  "E501", # Line too long
+  "PT013", # Found incorrect import of pytest, use simple `import pytest` instead
+]
+
+[tool.black]
+target-version = ["py38"]
+line-length = 120
+
+[tool.mypy]
+files = ["src", "tests"]
+strict = true
+
+[tool.pytest.ini_options]
+addopts = "-n auto"
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "pragma: no cover",
+  "if TYPE_CHECKING:",
+]
+show_missing = true
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

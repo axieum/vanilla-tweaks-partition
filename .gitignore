@@ -1,0 +1,37 @@
+### project
+
+packs/
+
+### python
+
+__pycache__/
+
+# poetry
+dist/
+
+# ruff
+.ruff_cache/
+
+# mypy
+.mypy_cache/
+
+# pytest
+.pytest_cache/
+
+# coverage
+htmlcov/
+*.cover
+*.py,cover
+.coverage*
+coverage.lcov
+coverage.xml
+
+### docs
+
+### ide
+
+# jetbrains
+.idea/
+
+# vscode
+.vscode/
