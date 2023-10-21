@@ -20,6 +20,7 @@ vanilla-tweaks-partition = "vanilla_tweaks_partition.main:app"
 
 [tool.poetry.dependencies]
 python = "^3.8.1"
+python-slugify = "^8.0.1"
 requests = "^2.31.0"
 typer = {version = "^0.9.0", extras = ["all"]}
 
