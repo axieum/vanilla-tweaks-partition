@@ -34,7 +34,7 @@ def generate(
         ),
     ],
     mc_version: Annotated[str, Option(help="The Minecraft version.")] = DEFAULT_MC_VERSION,
-    outdir: Annotated[Optional[Path], Option(help="The pack output directory.")] = DEFAULT_PACK_DIR,
+    outdir: Annotated[Path, Option(help="The pack output directory.")] = DEFAULT_PACK_DIR,
 ) -> None:
     """Download Vanilla Tweaks packs into separate Minecraft resource packs."""
 
@@ -125,9 +125,9 @@ def generate(
                 # Update the pack image
                 archive.writestr("pack.png", img)
                 # Copy remaining files
-                for file in original.filelist:
-                    if file.filename not in ("pack.mcmeta", "pack.png"):
-                        archive.writestr(file, original.read(file))
+                for fileinfo in original.filelist:
+                    if fileinfo.filename not in ("pack.mcmeta", "pack.png"):
+                        archive.writestr(fileinfo, original.read(fileinfo))
             progress.advance(task, 1)
 
         with ThreadPoolExecutor(max_workers=5) as pool:
